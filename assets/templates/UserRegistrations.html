@@ -1,0 +1,133 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block contents%}
+<style>
+.user-details-table{
+    border:1px solid black;
+    margin-top:20px
+}
+.user-details-table tr{
+    color:black;
+    margin-top:5px
+}
+.home_slider_content {
+        position: relative;
+        top: 40%;
+        transform: translateY(-50%);
+    }
+    .comment_button {
+   background-color:black;
+   color: #fff;
+   border: none;
+   padding: 10px 20px;
+   border-radius: 5px;
+   cursor: pointer;
+   border:1px solid black;
+   transition: background-color 0.3s ease;
+}
+
+.comment_button:hover {
+   background-color:white;
+   color:black
+}
+.label-cell {
+    font-weight: bold;
+    color: #333;
+    padding-right: 50px; /* Adjust this value to increase or decrease the space between label and field */
+    padding-top:10px;
+    padding-left:10px
+}
+.label-head {
+    font-weight: bold;
+    color: #333;
+    right:20px/* Adjust this value to increase or decrease the space between label and field */
+    
+}
+</style>
+
+<div class="home">
+		<div class="home_slider_container">
+
+			<!-- Home Slider -->
+			<div class="owl-carousel owl-theme home_slider">
+
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url({%static 'images/home_slider_1.jpg'%})"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title">User Register Form </div>
+                                                 <center>
+                                        <form action="{%url 'UserRegisterActions'%}" method="POST" class="text-primary comment_form"" style="width:100%">
+
+                    {% csrf_token %}
+                    <table class="user-details-table"> 
+                        <tr>
+                            <td class="label-head">User Name</td>
+                            <td class="label-cell">{{form.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-head">Login ID</td>
+                            <td class="label-cell">{{form.loginid}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-head">Password</td>
+                            <td class="label-cell">{{form.password}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-head">Mobile</td>
+                            <td class="label-cell">{{form.mobile}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-head">email</td>
+                            <td class="label-cell">{{form.email}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-head">Locality</td>
+                            <td class="label-cell">{{form.locality}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-head">Address</td>
+                            <td class="label-cell">{{form.address}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-head">City</td>
+                            <td class="label-cell">{{form.city}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-head">State</td>
+                            <td class="label-cell">{{form.state}}</td>
+                        </tr>
+                        <tr>
+
+                            <td class="label-cell"> {{form.status}}</td>
+                        </tr>
+<tr><td></td>
+     <td><button type="submit" class="comment_button trans_200">Register</button></td>
+                        </tr>
+
+
+                        {% if messages %}
+                        {% for message in messages %}
+                        <font color='GREEN'> {{ message }}</font>
+                        {% endfor %}
+                        {% endif %}
+
+                    </table>
+
+                </form>
+                                                 </center>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock%}
